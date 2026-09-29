@@ -1,0 +1,21 @@
+ public List<List<String>> groupAnagrams(String[] strs) {
+    List<List<String>> res = new ArrayList<>();
+    HashMap<String ,List<String>> map = new HashMap<>();
+     for (int i =0 ; i < strs.length ; i++){
+        // now we extract the string 
+         String str = strs[i];
+        // now we save in temp to sort and store in map 
+        String temp = str ;
+        // convert particular temp string to array so we can sort it 
+        char [] tempToChar = temp.toCharArray();
+          Arrays.sort(tempToChar);
+        String sortStr = new String(tempToChar);
+        map.putIfAbsent(sortStr,new ArrayList<>());
+        map.get(sortStr).add(str);
+        
+     }
+      for (Map.Entry<String ,List<String>> entry : map.entrySet()){
+           res.add(entry.getValue());
+      }
+      return res ;
+ }
