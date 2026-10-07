@@ -1,0 +1,22 @@
+we can use stack , in stack we use the deque 
+so the code is that 
+class Solution {
+    public String removeStars(String s) {
+         //    String s  = "leet**cod*e";
+         Deque<Character> deq = new ArrayDeque<>();
+	for ( int i =0 ; i <s.length();i++){
+		char ch = s.charAt(i);
+              if (ch != '*'){
+               deq.push(ch);
+		}else if (ch=='*') {
+		deq.pop();
+		}
+	}
+      StringBuilder st = new StringBuilder();
+      Iterator<Character> it = deq.descendingIterator();
+	             while(it.hasNext()){
+			st.append(it.next());
+		}
+         return st.toString();
+    }
+}
