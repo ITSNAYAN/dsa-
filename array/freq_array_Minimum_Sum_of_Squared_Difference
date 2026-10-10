@@ -1,0 +1,20 @@
+ public long minSumSquareDiff(int[] nums1, int[] nums2, int k1, int k2) {
+         int  max = 100_000;
+     long [] freqArr = new long[max+1];
+        for (int i =0 ; i<nums1.length ; i++){
+            int   diff = int  Math.abs(nums1[i]-nums2[i]);
+               freqArr[diff]++;
+        } 
+        long k = (long) k1+k2 ; 
+     for (int i =max  ; i >0 &&k>0 ; i-- ){
+         long  diff = Math.min(freqArr[i],k);
+           freqArr[i] -= diff ; 
+          freqArr[i-1] += diff ; 
+           k -= diff ; 
+     }
+   long res =0 ;
+     for (int i =1 ; i<=max ;i++){
+        res += freqArr[i] * i * i ;
+     }
+  return res ;
+    }
