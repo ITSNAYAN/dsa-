@@ -1,0 +1,21 @@
+   public boolean repeatedSubstringPattern(String s) {
+        int n = s.length(); 
+        for (int i= 1 ; i<=n/2 ;i++){
+            String str = s.substring(0,i)
+                StringBuilder newStr = new StringBuilder();
+                int  m = str.length();
+              if (n%m==0){
+                  int times = n/m ;
+                 while (times>0){
+                   newStr.append(str);
+                     times--;
+                 }
+                 if (newStr.toString().equals(s)){
+                     return true ;
+                 }
+              }
+            }
+      
+        }
+      return false ;
+    }
