@@ -1,0 +1,34 @@
+////the problem is greedy 
+You are given two positive integers num and sum.
+
+A positive integer n is good if it satisfies both of the following:
+
+The number of digits in n is exactly num.
+The sum of digits in n is exactly sum.
+The score of a good integer n is the sum of the squares of digits in n.
+
+Return a string denoting the good integer n that achieves the maximum score. If there are multiple possible integers, return the maximum ​​​​​​​one. If no such integer exists, return an empty string.
+
+///MY APPROACH ------- Mistake I do 
+my approach says that find first and last element through we can search and put it check on that time line like suppoise number is 2 and sum =17 since we can take upto two place 
+we set the time line of 10 - 99 and search from there , this is the mistake i do  
+/// Learning 
+------- first i have carefully look in to the input and output then we can see that maximum number we can put is nine if maximum required sum >9  if not we can put 
+the sum of that number 
+----------second if sum > 9*num means if sum =10 and num =1  so we cant take this we have to observe this so we return the empty string  "" 
+
+/// code
+
+  if(sum>9*num){
+  return "";
+  }
+StringBuilder str = new StringBuilder();
+for (int i =0 ; i <num;i++){
+ int digit = Math.min(9,sum);
+  str.append(digit);
+sum -= digit ;
+}
+if (sum>0){
+return "";
+}
+return str.toString();
