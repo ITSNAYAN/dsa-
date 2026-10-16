@@ -1,0 +1,47 @@
+// the approach 
+approach is simple we start iterating from last to first and find that breakpoint which is odd 
+by odd means if see the array in the two half we iteratate from right each element[i]>[i-1] since graph is declining 
+so we have to look into that one up point where the condition num[i]<num[i-1] if we find that point thats it thats the point 
+where it dvidee the array in two sorted way ;
+  
+  
+  
+  //solution 
+class Solution {
+    public int search(int[] nums, int target) {
+         int first =0 ; 
+      int last = nums.length-1;
+       boolean flag = false ; 
+        int breakpoint = 0;
+      for (int i =last  ; i>0;i--){
+          if (nums[i]<nums[i-1]){
+           flag = true ;
+            breakpoint = i ; 
+             break ;
+          }
+      }
+      if (!flag){
+        return  binarySearch(nums,target,first,last);
+      }
+
+       if (target>=nums[breakpoint] && target<=nums[last] ){
+        return    binarySearch(nums,target,breakpoint,last);
+       }else {
+           return binarySearch(nums,target,first , breakpoint-1);
+       }
+    }
+        public int binarySearch(int [] nums , int target , int first , int last  ){
+         while (first<=last){
+           int mid = (first+last)/2;
+           if (nums[mid]==target){
+           return mid ;
+           }else if (nums[mid]<target){
+             first= mid+1;
+           }else {
+             last = mid-1;
+           }
+          
+         }
+          return -1;
+    }
+}
