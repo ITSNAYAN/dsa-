@@ -1,0 +1,41 @@
+the problem says that we have to find minimum substring so that it contain all the element of t in String s 
+
+  public String minWindow(String s, String t) {
+         if (s.length()<t.length()){
+        return "";
+      }
+    Map<Character , Integer> map = new HashMap<>();
+        for (int i =0 ; i<t.length();i++){
+           char c = t.charAt(i);
+            map.put(c, map.getOrDefault(c,0)+1);
+              
+        } 
+         int res = Integer.MAX_VALUE;
+         int reqCount =t.length() ; // this is used to count if all chars of t is there or not  
+         int left =0 ; 
+          int first = 0 ; 
+         for (int i=0 ; i<s.length();i++){
+            char c = s.charAt(i);
+              if (map.getOrDefault(c,0)>0){
+                 reqCount--; 
+              }
+             map.put(c, map.getOrDefault(c,0)-1);
+
+             while (reqCount==0){
+                char l = s.charAt(left);
+                 int len = i - left +1 ; 
+                 if (res>len){
+                   first = left ; 
+                   res = len ; 
+                 }
+                 map.put(l , map.getOrDefault(l,0)+1);
+                 if (map.getOrDefault(l,0)>0){
+                       reqCount++;
+                 }
+                  left++ ; 
+             }
+              
+         }
+          return res ==Integer.MAX_VALUE ? "": s.substring(first , first+res);
+    }
+    }
